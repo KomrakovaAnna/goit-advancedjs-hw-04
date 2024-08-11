@@ -5,8 +5,10 @@
   |============================
 */
 @import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
+@import url('./gallery.css');
+@import url('./search.css');
+@import url('./loader.css');
+@import url('izitoast/dist/css/iziToast.css');
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -17,9 +19,68 @@
   color: #242424;
   background-color: rgba(255, 255, 255, 0.87);
 
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+body {
+  background: #f6f6fe;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+h1 {
+  padding-top: 40px;
+  text-align-last: center;
+}
+.main-page__section {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--cornflower);
+  box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
+}
+.nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 30px;
+  gap: 40px;
+}
+
+.nav-link {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: #242424;
+}
+a:hover,
+.nav-link:hover,
+.nav-link:focus {
+  color: #747bff;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.loader__wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
 }
