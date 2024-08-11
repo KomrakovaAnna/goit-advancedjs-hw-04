@@ -110,8 +110,6 @@ const onLoadMoreBtnClick = async event => {
       return;
     }
 
-    
-
     const galleryHTML = render.renderGallery(hits, true);
     galleryEL.insertAdjacentHTML('beforeend', galleryHTML);
     gallery.refresh();
