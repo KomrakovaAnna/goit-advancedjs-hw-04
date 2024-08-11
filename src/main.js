@@ -136,5 +136,6 @@ function scrollGalleryIntoView() {
   }
 }
 
+
 loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
 searchForm.addEventListener('submit', onSearchFormSubmit);
