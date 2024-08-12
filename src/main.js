@@ -32,7 +32,7 @@ const onSearchFormSubmit = async event => {
       });
       loaderPlaceholder.classList.add('is-hidden');
       searchForm.reset();
-      galleryEl.innerHTML = '';
+      galleryEL.innerHTML = '';
       return;
     }
 
@@ -43,18 +43,19 @@ const onSearchFormSubmit = async event => {
     );
 
     const { hits } = data;
-    if (!hits || hits.length === 0) {
+    if (!hits || hits.length === 0 || hits == []) {
+      
       iziToast.error({
         message:
           'Sorry, there are no images matching your search query. Please try again!',
         position: 'topRight',
       });
       loaderPlaceholder.classList.add('is-hidden');
-
       searchForm.reset();
-      galleryEl.innerHTML = '';
+      galleryEL.innerHTML = '';
       return;
     }
+
     const galleryHTML = render.renderGallery(hits);
     galleryEL.innerHTML = galleryHTML;
     gallery.refresh();
@@ -70,6 +71,8 @@ const onSearchFormSubmit = async event => {
       message: 'Please, try again!',
       position: 'topRight',
     });
+    searchForm.reset();
+    galleryEL.innerHTML = '';
   }
 };
 
