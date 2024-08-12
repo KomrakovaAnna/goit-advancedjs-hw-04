@@ -15,14 +15,15 @@ let currentPage = 1;
 let searchValue = '';
 
 const onSearchFormSubmit = async event => {
+
+  loaderPlaceholder.classList.remove('is-hidden');
+
   try {
     event.preventDefault();
     currentPage = 1;
-    const searchValue = event.target.elements.user_query.value.trim();
+    searchValue = event.target.elements.user_query.value.trim();
     loadMoreBtn.classList.add('visually-hidden');
-    loaderPlaceholder.classList.remove('is-hidden');
-
-  
+    
 
     if (searchValue === '') {
       iziToast.error({
@@ -61,9 +62,9 @@ const onSearchFormSubmit = async event => {
     scrollGalleryIntoView()
 
     searchForm.reset();
+    loaderPlaceholder.classList.add('is-hidden');
     loadMoreBtn.classList.remove('visually-hidden');
 
-    loaderPlaceholder.classList.add('is-hidden');
   } catch (err) {
     iziToast.error({
       message: 'Please, try again!',
@@ -80,42 +81,37 @@ const gallery = new SimpleLightbox('.gallery a', {
 const onLoadMoreBtnClick = async event => {
   try {
     currentPage += 1;
-    if (searchValue === '') {
-      console.log('no searchValue');
-    }
+    loaderPlaceholder.classList.remove('is-hidden');
     const { data } = await apiCalls.apiCall(
       searchValue,
       currentPage,
       itemPerPage
     );
 
-    console.log(currentPage);
-   
-
-
     const { hits, totalHits } = data;
 
-    console.log(hits);
-    console.log(totalHits);
-
-
-    totalHits = data.totalHits;
-    if (hits.length === 0) {
+    if (data.length === 0) {
       loadMoreBtn.classList.add('visually-hidden');
-      iziToast.error({
+      iziToast.info({
         message: "We're sorry, but you've reached the end of search results.",
         position: 'topRight',
       });
-
+      loaderPlaceholder.classList.add('is-hidden');
       return;
     }
 
-    const galleryHTML = render.renderGallery(hits, true);
-    galleryEL.insertAdjacentHTML('beforeend', galleryHTML);
+    const nextGalleryItems = render.renderGallery(hits);
+    galleryEL.insertAdjacentHTML('beforeend', nextGalleryItems);
     gallery.refresh();
+
+    loaderPlaceholder.classList.add('is-hidden');
 
     if (currentPage * itemPerPage >= totalHits) {
       loadMoreBtn.classList.add('visually-hidden');
+      iziToast.info({
+        message: "We're sorry, but you've reached the end of search results.",
+        position: 'topRight',
+      });
   }
 
     scrollGalleryIntoView();

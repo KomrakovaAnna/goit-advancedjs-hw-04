@@ -29,19 +29,19 @@ export const renderGallery = images => {
   <div >
   <ul class="stats">
     <li class="stat-item">
-    <div class="stat-header"><strong>Likes</strong></div>
+    <div class="stat-header">Likes</div>
     <div class="stat-value">${likes}</div>
     </li>
     <li class="stat-item">
-    <div class="stat-header"><strong>Views</strong></div>
+    <div class="stat-header">Views</div>
     <div class="stat-value">${views}</div>
     </li>
     <li class="stat-item">
-    <div class="stat-header"><strong>Comments</strong></div>
+    <div class="stat-header">Comments</div>
     <div class="stat-value">${comments}</div>
     </li>
     <li class="stat-item">
-    <div class="stat-header"><strong>Downloads</strong></div>
+    <div class="stat-header">Downloads</div>
     <div class="stat-value">${downloads}</div>
     </li>
   </ul>
